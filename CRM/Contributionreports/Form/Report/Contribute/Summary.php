@@ -6,6 +6,7 @@ class CRM_Contributionreports_Form_Report_Contribute_Summary extends CRM_Report_
 		parent::__construct();
 		$this->_columns['civicrm_contribution']['fields']['payment_instrument_id'] = array(
 			'title' => ts('Payment Type'),
+			'type' => CRM_Utils_Type::T_STRING,
 		);
 		$this->_columns['civicrm_contribution']['group_bys']['payment_instrument_id'] = array(
 			'title' => ts('Payment Type'),
