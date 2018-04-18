@@ -18,17 +18,21 @@ class CRM_Contributionreports_Form_Report_Contribute_Summary extends CRM_Report_
   public function modifyColumnHeaders() {
     // use this method to modify $this->_columnHeaders
     $columnHeaders = array();
+		if (isset($this->_columnHeaders['civicrm_financial_type_financial_type'])) {
+			$columnHeaders['civicrm_financial_type_financial_type'] = $this->_columnHeaders['civicrm_financial_type_financial_type'];
+			unset($this->_columnHeaders['civicrm_financial_type_financial_type']);
+		}
+		if (isset($this->_columnHeaders['civicrm_contribution_campaign_id'])) {
+			$columnHeaders['civicrm_contribution_campaign_id'] = $this->_columnHeaders['civicrm_contribution_campaign_id'];
+			unset($this->_columnHeaders['civicrm_contribution_campaign_id']);
+		}
+		if (isset($this->_columnHeaders['civicrm_contribution_payment_instrument_id'])) {
+			$columnHeaders['civicrm_contribution_payment_instrument_id'] = $this->_columnHeaders['civicrm_contribution_payment_instrument_id'];
+			unset($this->_columnHeaders['civicrm_contribution_payment_instrument_id']);
+		}
+		
 		foreach($this->_columnHeaders as $key => $header) {
-			if ($key == 'civicrm_contribution_payment_instrument_id' || $key == 'civicrm_contribution_campaign_id') {
-				continue;
-			}
-			if ($key == 'civicrm_financial_type_financial_type' && isset($this->_columnHeaders['civicrm_contribution_payment_instrument_id'])) {
-				$columnHeaders['civicrm_contribution_payment_instrument_id'] = $this->_columnHeaders['civicrm_contribution_payment_instrument_id'];
-			}
 			$columnHeaders[$key] = $header;
-			if ($key == 'civicrm_financial_type_financial_type' && isset($this->_columnHeaders['civicrm_contribution_campaign_id'])) {
-				$columnHeaders['civicrm_contribution_campaign_id'] = $this->_columnHeaders['civicrm_contribution_campaign_id'];
-			}
 		}
 
     $this->_columnHeaders = $columnHeaders;
